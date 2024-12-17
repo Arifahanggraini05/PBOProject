@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Animasi ketik otomatis */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Gaya dan animasi teks */
+header {
+    text-align: center;
+    margin: 20px 0;
+    color: #8B4513; /* Warna coklat kopi */
+}
+
+#welcome-text {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    border-right: 3px solid #8B4513;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0; /* Mulai dengan lebar 0 */
+    animation: typing 3s steps(30, end), blink 0.8s infinite;
+}
+
+.highlight-kafe {
+    color: #FF5733; /* Warna oranye mencolok */
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+}
+
+/* Animasi pulse untuk teks "Kafe Kami" */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #333;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+/* Animasi saat item ditambahkan */
+@keyframes fadeInScale {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.added-item {
+    animation: fadeInScale 0.5s ease-in-out;
+}
+
+/* Tambahkan animasi total harga */
+@keyframes highlightTotal {
+    0% {
+        background-color: #f8e4b7;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+.highlight {
+    animation: highlightTotal 1s ease;
+}
