@@ -6,54 +6,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
     <title>Kafe Kami</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        #menu {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .menu-item {
-            border: 1px solid #8B4513;
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .menu-item img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
-
-        button {
-            margin: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            background-color: #8B4513;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-
-        #cart {
-            margin-top: 20px;
-            border-top: 2px solid #8B4513;
-            padding-top: 10px;
-        }
-
-        #cart ul {
-            list-style: none;
-            padding: 0;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -67,75 +19,75 @@
                 <img src="espresso.jpg" alt="Espresso">
                 <p>Espresso - Rp. 25.000</p>
                 <p>• Espresso</p>
-		<p> Ice or Hot</p>
+                <p>Ice or Hot</p>
                 <button onclick="addToCart('Espresso', 25000)">Add to Cart</button>
             </div>
             <div class="menu-item">
                 <img src="marocchino.jpg" alt="Marocchino">
                 <p>Marocchino - Rp. 30.000</p>
                 <p>• Espresso</p>
-		<p>• Cokelat bubuk</p>
-		<p>• Susu</p>
-		<p> Ice or Hot</p>
+                <p>• Cokelat bubuk</p>
+                <p>• Susu</p>
+                <p>Ice or Hot</p>
                 <button onclick="addToCart('Marocchino', 30000)">Add to Cart</button>
             </div>
             <div class="menu-item">
                 <img src="americano.jpg" alt="Americano">
                 <p>Americano - Rp. 25.000</p>
                 <p>• Espresso</p>
-		<p>• Air</p>
-		<p> Ice or Hot</p>
+                <p>• Air</p>
+                <p>Ice or Hot</p>
                 <button onclick="addToCart('Americano', 25000)">Add to Cart</button>
             </div>
             <div class="menu-item">
                 <img src="antoccino.jpg" alt="Antoccino">
                 <p>Antoccino - Rp. 27.000</p>
                 <p>• Espresso</p>
-		<p>• Susu</p>
-		<p> Ice or Hot</p>
+                <p>• Susu</p>
+                <p>Ice or Hot</p>
                 <button onclick="addToCart('Antoccino', 27000)">Add to Cart</button>
             </div>
             <div class="menu-item">
                 <img src="cappuccino.jpg" alt="Cappuccino">
                 <p>Cappuccino - Rp. 25.000</p>
                 <p>• Espresso</p>
-		<p>• Susu</p>
-		<p>• Busa susu</p>
-		<p> Ice or Hot</p>
+                <p>• Susu</p>
+                <p>• Busa susu</p>
+                <p>Ice or Hot</p>
                 <button onclick="addToCart('Cappuccino', 25000)">Add to Cart</button>
             </div>
             <div class="menu-item">
                 <img src="glace.jpg" alt="Glace">
                 <p>Glace - Rp. 28.000</p>
                 <p>• Espresso</p>
-		<p>• Susu (opsional)</p>
-		<p> Ice or Hot</p>
+                <p>• Susu (opsional)</p>
+                <p>Ice or Hot</p>
                 <button onclick="addToCart('Glace', 28000)">Add to Cart</button>
             </div>
             <div class="menu-item">
                 <img src="latte.jpg" alt="Latte">
                 <p>Latte - Rp. 30.000</p>
                 <p>• Espresso </p>
-		<p>• Susu panas</p>
-		<p> Ice or Hot</p>
+                <p>• Susu panas</p>
+                <p>Ice or Hot</p>
                 <button onclick="addToCart('Latte', 30000)">Add to Cart</button>
             </div>
             <div class="menu-item">
                 <img src="cocoa.jpg" alt="Cocoa">
                 <p>Cocoa - Rp. 33.000</p>
                 <p>• Cokelat bubuk </p>
-		<p>• Susu </p>
-		<p>• Krim</p>
-		<p> Ice or Hot</p>
+                <p>• Susu </p>
+                <p>• Krim</p>
+                <p>Ice or Hot</p>
                 <button onclick="addToCart('Cocoa', 33000)">Add to Cart</button>
             </div>
             <div class="menu-item">
                 <img src="mocha.jpg" alt="Mocha">
                 <p>Mocha - Rp. 35.000</p>
                 <p>• Espresso </p>
-		<p>• Cokelat cair </p>
-		<p>• Susu panas</p>
-		<p> Ice or Hot</p>
+                <p>• Cokelat cair </p>
+                <p>• Susu panas</p>
+                <p>Ice or Hot</p>
                 <button onclick="addToCart('Mocha', 35000)">Add to Cart</button>
             </div>
         </section>
@@ -144,7 +96,30 @@
             <h2>Keranjang Belanja</h2>
             <ul id="cart-items"></ul>
             <p>Total: <strong>Rp. <span id="total-price">0</span></strong></p>
+            <button onclick="processPayment()">Bayar</button>
         </section>
+
+        <section id="delivery-info">
+            <h2>Layanan Pengiriman</h2>
+            <p>Kami menghadirkan layanan pengiriman cepat dan andal untuk kenyamanan Anda.</p>
+            <p><strong>Biaya Pengiriman:</strong> Rp. 10.000</p>
+            <p><strong>Promo:</strong> Gratis ongkos kirim untuk pembelian di atas Rp. 100.000!</p>
+            <p>Pesanan Anda akan sampai dalam waktu kurang dari 30 menit di area lokal.</p>
+        </section>
+
+        <!-- Modal structure -->
+        <div id="order-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal()">&times;</span>
+                <h2>Rincian Pesanan</h2>
+                <ul id="order-details"></ul>
+                <p>Total Harga: <strong>Rp. <span id="order-total">0</span></strong></p>
+                <div class="success-message">
+                    <p><strong>Pembayaran Berhasil!</strong> Terima kasih telah memesan di Kafe Kami.</p>
+                    <button onclick="finishOrder()">Kembali ke Menu</button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
