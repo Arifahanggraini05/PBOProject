@@ -1,53 +1,76 @@
-// Array untuk menyimpan item di keranjang
-let cart = [];
+const cart = [];
 
-// Fungsi untuk menambahkan item ke keranjang
-function addToCart(itemName, itemPrice) {
-    // Tambahkan item ke array keranjang
-    cart.push({ name: itemName, price: itemPrice });
-    updateCart(); // Perbarui tampilan keranjang
+function addToCart(item, price) {
+    const existingItem = cart.find(cartItem => cartItem.name === item);
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cart.push({ name: item, price: price, quantity: 1 });
+    }
+    renderCart();
 }
 
-// Fungsi untuk memperbarui tampilan keranjang
-function updateCart() {
-    const cartItems = document.getElementById('cart-items');
-    const totalPriceEl = document.getElementById('total-price');
+function removeFromCart(item) {
+    const index = cart.findIndex(cartItem => cartItem.name === item);
+    if (index !== -1) {
+        cart[index].quantity--;
+        if (cart[index].quantity === 0) {
+            cart.splice(index, 1);
+        }
+    }
+    renderCart();
+}
+
+function renderCart() {
+    const cartItemsElement = document.getElementById('cart-items');
+    const totalPriceElement = document.getElementById('total-price');
+    cartItemsElement.innerHTML = '';
+
     let totalPrice = 0;
-
-    // Kosongkan tampilan keranjang sebelum diperbarui
-    cartItems.innerHTML = '';
-
-    // Looping setiap item di keranjang untuk ditampilkan
-    cart.forEach((item) => {
-        totalPrice += item.price;
-        const listItem = document.createElement('li');
-        listItem.textContent = `${item.name} - Rp. ${item.price.toLocaleString()}`;
-        
-        // Tambahkan animasi saat item ditambahkan
-        listItem.classList.add('added-item');
-        cartItems.appendChild(listItem);
-
-        // Hapus kelas animasi setelah selesai (500ms)
-        setTimeout(() => {
-            listItem.classList.remove('added-item');
-        }, 500);
+    cart.forEach(cartItem => {
+        const li = document.createElement('li');
+        li.innerHTML = `${cartItem.name} - Rp. ${cartItem.price} x ${cartItem.quantity} 
+            <button onclick="removeFromCart('${cartItem.name}')">-</button>`;
+        cartItemsElement.appendChild(li);
+        totalPrice += cartItem.price * cartItem.quantity;
     });
 
-    // Perbarui total harga
-    totalPriceEl.textContent = totalPrice.toLocaleString();
-
-    // Tambahkan animasi ke total harga
-    totalPriceEl.classList.add('highlight');
-    setTimeout(() => {
-        totalPriceEl.classList.remove('highlight');
-    }, 1000);
+    totalPriceElement.textContent = totalPrice;
 }
-// Animasi header saat halaman dimuat
-document.addEventListener('DOMContentLoaded', () => {
-    const welcomeText = document.getElementById('welcome-text');
 
-    // Tambahkan delay sebelum animasi dimulai
-    setTimeout(() => {
-        welcomeText.style.width = '100%';
-    }, 500); // Delay 0.5 detik
-});
+function processPayment() {
+    const orderDetailsElement = document.getElementById('order-details');
+    const orderTotalElement = document.getElementById('order-total');
+    const modal = document.getElementById('order-modal');
+
+    orderDetailsElement.innerHTML = '';
+    let totalPrice = 0;
+
+    cart.forEach(cartItem => {
+        const li = document.createElement('li');
+        li.textContent = `${cartItem.name} - Rp. ${cartItem.price} x ${cartItem.quantity}`;
+        orderDetailsElement.appendChild(li);
+        totalPrice += cartItem.price * cartItem.quantity;
+    });
+
+    orderTotalElement.textContent = totalPrice;
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    const modal = document.getElementById('order-modal');
+    modal.style.display = 'none';
+}
+
+function finishOrder() {
+    cart.length = 0;
+    renderCart();
+    closeModal();
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('order-modal');
+    if (event.target == modal) {
+        closeModal();
+    }
+};
