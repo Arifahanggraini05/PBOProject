@@ -5,8 +5,8 @@ const urlsToCache = [
     '/styles.css',
     '/app.js',
     '/manifest.json',
-    '/icon-192x192.png',
-    '/icon-512x512.png',
+    '/icon-192x192.jpg',
+    '/icon-512x512.jpg',
 ];
 
 // Install Service Worker dan cache semua file
