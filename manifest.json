@@ -9,20 +9,20 @@
     {
       "src": "icon-144x144.jpg",
       "sizes": "144x144",
-      "type": "png/jpg"
-      
+      "type": "png/jpg",
+      "purpose": "any"
     },
     {
       "src": "icon-192x192.jpg",
       "sizes": "192x192",
-      "type": "png/jpg"
-     
+      "type": "png/jpg",
+      "purpose": "any"
     },
     {
       "src": "icon-512x512.jpg",
       "sizes": "512x512",
-      "type": "png/jpg"
-      
+      "type": "png/jpg",
+      "purpose": "any"
     }
   ],
   "screenshots": [
